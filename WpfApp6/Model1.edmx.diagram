@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b69f043bf0df4953823de6a34dc80e56" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Авторизация" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Вид_дома" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Договор_на_оказание_услуг" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Запрос" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Клиент" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Недвижимость" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Оплата" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Район" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Риелтор" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Справочник_помещения" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Статус_оплаты" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Счёт" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Недвижимость_Вид_дома" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Договор_на_оказание_услуг_Риелтор" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Клиент_Договор_на_оказание_услуг" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Запрос_Клиент" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Клиент_Оплата" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Недвижимость_Район" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Недвижимость_Риелтор" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Недвижимость_Статус_оплаты" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Оплата_Счёт" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Риелтор_Справочник_помещения" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

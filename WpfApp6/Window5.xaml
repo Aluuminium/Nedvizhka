@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfApp6.Window5"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp6"
+        mc:Ignorable="d"
+        Title="Добавление" Height="450" Width="800">
+    <Grid Background="Black">
+        <TextBlock Text="Район" Margin="28,30,664,373" Foreground="White"/>
+        <TextBlock Text="Кол-во комнат" Margin="28,104,679,299" Foreground="White"/>
+        <TextBlock Text="Адрес" Margin="28,180,710,223" Foreground="White"/>
+        <TextBlock Text="Стоимость" Margin="28,261,706,142" Foreground="White"/>
+        <TextBlock Text="Вид дома" Margin="418,104,288,299" Foreground="White"/>
+        <TextBlock Text="Метраж" Margin="418,29.5,310,373.5" Foreground="White"/>
+        <TextBox Text="{Binding количество_комнат}" Width="240" HorizontalAlignment="Left" Margin="132,97.5,0,291.5" Foreground="White"/>
+        <TextBox Text="{Binding Адрес}" Width="240" HorizontalAlignment="Left" Margin="132,172.5,0,216.5" Foreground="White"/>
+        <TextBox Text="{Binding Стоимость}" Width="240" HorizontalAlignment="Left" Margin="132,247.5,0,141.5" Foreground="White"/>
+        <TextBox Text="{Binding метраж}" Width="240" HorizontalAlignment="Center" Margin="535.5,22.5,16.5,366.5" Foreground="White"/>
+        <ComboBox SelectedItem="{Binding Вид_дома}" Width="240" HorizontalAlignment="Center" x:Name="ComboVid" DisplayMemberPath="Вид дома1" Margin="536,98,16,291" Foreground="White"/>
+        <ComboBox SelectedItem="{Binding Район}" Width="240" HorizontalAlignment="Center" x:Name="ComboRain" DisplayMemberPath="Название" Margin="133,30,419,359" Foreground="White"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="344,368,0,0" VerticalAlignment="Top" Width="138" Height="41" FontFamily="Comic Sans MS" FontSize="14" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" Click="Button_Click_4"/>
+    </Grid>
+</Window>

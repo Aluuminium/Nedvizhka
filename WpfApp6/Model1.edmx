@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Авторизация">
+          <Key>
+            <PropertyRef Name="ID пользователя" />
+          </Key>
+          <Property Name="ID пользователя" Type="int" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Вид дома">
+          <Key>
+            <PropertyRef Name="ID вида" />
+          </Key>
+          <Property Name="ID вида" Type="int" Nullable="false" />
+          <Property Name="Вид дома" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Договор на оказание услуг">
+          <Key>
+            <PropertyRef Name="ID договора" />
+          </Key>
+          <Property Name="ID договора" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" />
+          <Property Name="Код риелтора" Type="int" />
+          <Property Name="Код недвижимости" Type="int" />
+          <Property Name="Код клиента" Type="int" />
+          <Property Name="Сумма" Type="int" />
+        </EntityType>
+        <EntityType Name="Запрос">
+          <Key>
+            <PropertyRef Name="ID запроса" />
+          </Key>
+          <Property Name="ID запроса" Type="int" Nullable="false" />
+          <Property Name="Площадь помещения" Type="int" />
+          <Property Name="Тип" Type="nvarchar(max)" />
+          <Property Name="Бюджет" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID клиента" Type="int" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="ID клиента" />
+          </Key>
+          <Property Name="ID клиента" Type="int" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar(max)" />
+          <Property Name="Имя" Type="nvarchar(max)" />
+          <Property Name="Отчество" Type="nvarchar(max)" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="50" />
+          <Property Name="Паспортные данные" Type="nvarchar" MaxLength="50" />
+          <Property Name="[ID платежа" Type="int" />
+          <Property Name="ID договора" Type="int" />
+        </EntityType>
+        <EntityType Name="Недвижимость">
+          <Key>
+            <PropertyRef Name="ID недвижимости" />
+          </Key>
+          <Property Name="ID недвижимости" Type="int" Nullable="false" />
+          <Property Name="Стоимость" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID статуса" Type="int" />
+          <Property Name="ID района" Type="int" />
+          <Property Name="Адрес" Type="nvarchar(max)" />
+          <Property Name="ID вида" Type="int" />
+          <Property Name="количество комнат" Type="nvarchar" MaxLength="50" />
+          <Property Name="метраж" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID риелтора" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Оплата">
+          <Key>
+            <PropertyRef Name="ID платежа" />
+          </Key>
+          <Property Name="ID платежа" Type="int" Nullable="false" />
+          <Property Name="Дата платежа" Type="date" />
+          <Property Name="Сумма платежа" Type="money" />
+          <Property Name="ID счёта" Type="int" />
+        </EntityType>
+        <EntityType Name="Район">
+          <Key>
+            <PropertyRef Name="ID района" />
+          </Key>
+          <Property Name="ID района" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Риелтор">
+          <Key>
+            <PropertyRef Name="ID риелтора" />
+          </Key>
+          <Property Name="ID риелтора" Type="int" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar(max)" />
+          <Property Name="Имя" Type="nvarchar(max)" />
+          <Property Name="Отчество" Type="nvarchar(max)" />
+          <Property Name="ID запроса" Type="int" />
+          <Property Name="ID помещения" Type="int" />
+        </EntityType>
+        <EntityType Name="Справочник помещения">
+          <Key>
+            <PropertyRef Name="ID помещения" />
+          </Key>
+          <Property Name="ID помещения" Type="int" Nullable="false" />
+          <Property Name="Площадь помещения" Type="nvarchar(max)" />
+          <Property Name="Тип" Type="nvarchar(max)" />
+          <Property Name="Цена" Type="money" />
+          <Property Name="ID района" Type="int" />
+        </EntityType>
+        <EntityType Name="Статус оплаты">
+          <Key>
+            <PropertyRef Name="ID статуса" />
+          </Key>
+          <Property Name="ID статуса" Type="int" Nullable="false" />
+          <Property Name="Статус оплаты" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Счёт">
+          <Key>
+            <PropertyRef Name="ID счёта" />
+          </Key>
+          <Property Name="ID счёта" Type="int" Nullable="false" />
+          <Property Name="Реквизиты банка" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Договор на оказание услуг_Риелтор">
+          <End Role="Риелтор" Type="Self.Риелтор" Multiplicity="0..1" />
+          <End Role="Договор на оказание услуг" Type="Self.Договор на оказание услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Риелтор">
+              <PropertyRef Name="ID риелтора" />
+            </Principal>
+            <Dependent Role="Договор на оказание услуг">
+              <PropertyRef Name="Код риелтора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запрос_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1" />
+          <End Role="Запрос" Type="Self.Запрос" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="ID клиента" />
+            </Principal>
+            <Dependent Role="Запрос">
+              <PropertyRef Name="ID клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Договор на оказание услуг">
+          <End Role="Договор на оказание услуг" Type="Self.Договор на оказание услуг" Multiplicity="0..1" />
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договор на оказание услуг">
+              <PropertyRef Name="ID договора" />
+            </Principal>
+            <Dependent Role="Клиент">
+              <PropertyRef Name="ID договора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Оплата">
+          <End Role="Оплата" Type="Self.Оплата" Multiplicity="0..1" />
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оплата">
+              <PropertyRef Name="ID платежа" />
+            </Principal>
+            <Dependent Role="Клиент">
+              <PropertyRef Name="[ID платежа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Вид дома">
+          <End Role="Вид дома" Type="Self.Вид дома" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Вид дома">
+              <PropertyRef Name="ID вида" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID вида" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Район">
+          <End Role="Район" Type="Self.Район" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Район">
+              <PropertyRef Name="ID района" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID района" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Риелтор">
+          <End Role="Риелтор" Type="Self.Риелтор" Multiplicity="1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Риелтор">
+              <PropertyRef Name="ID риелтора" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID риелтора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Статус оплаты">
+          <End Role="Статус оплаты" Type="Self.Статус оплаты" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус оплаты">
+              <PropertyRef Name="ID статуса" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID статуса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оплата_Счёт">
+          <End Role="Счёт" Type="Self.Счёт" Multiplicity="0..1" />
+          <End Role="Оплата" Type="Self.Оплата" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Счёт">
+              <PropertyRef Name="ID счёта" />
+            </Principal>
+            <Dependent Role="Оплата">
+              <PropertyRef Name="ID счёта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Риелтор_Справочник помещения">
+          <End Role="Справочник помещения" Type="Self.Справочник помещения" Multiplicity="0..1" />
+          <End Role="Риелтор" Type="Self.Риелтор" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Справочник помещения">
+              <PropertyRef Name="ID помещения" />
+            </Principal>
+            <Dependent Role="Риелтор">
+              <PropertyRef Name="ID помещения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Авторизация" EntityType="Self.Авторизация" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Вид дома" EntityType="Self.Вид дома" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Договор на оказание услуг" EntityType="Self.Договор на оказание услуг" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Запрос" EntityType="Self.Запрос" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Недвижимость" EntityType="Self.Недвижимость" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оплата" EntityType="Self.Оплата" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Район" EntityType="Self.Район" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Риелтор" EntityType="Self.Риелтор" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Справочник помещения" EntityType="Self.Справочник помещения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статус оплаты" EntityType="Self.Статус оплаты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Счёт" EntityType="Self.Счёт" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Договор на оказание услуг_Риелтор" Association="Self.FK_Договор на оказание услуг_Риелтор">
+            <End Role="Риелтор" EntitySet="Риелтор" />
+            <End Role="Договор на оказание услуг" EntitySet="Договор на оказание услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запрос_Клиент" Association="Self.FK_Запрос_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="Запрос" EntitySet="Запрос" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Договор на оказание услуг" Association="Self.FK_Клиент_Договор на оказание услуг">
+            <End Role="Договор на оказание услуг" EntitySet="Договор на оказание услуг" />
+            <End Role="Клиент" EntitySet="Клиент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Оплата" Association="Self.FK_Клиент_Оплата">
+            <End Role="Оплата" EntitySet="Оплата" />
+            <End Role="Клиент" EntitySet="Клиент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Вид дома" Association="Self.FK_Недвижимость_Вид дома">
+            <End Role="Вид дома" EntitySet="Вид дома" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Район" Association="Self.FK_Недвижимость_Район">
+            <End Role="Район" EntitySet="Район" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Риелтор" Association="Self.FK_Недвижимость_Риелтор">
+            <End Role="Риелтор" EntitySet="Риелтор" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Статус оплаты" Association="Self.FK_Недвижимость_Статус оплаты">
+            <End Role="Статус оплаты" EntitySet="Статус оплаты" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оплата_Счёт" Association="Self.FK_Оплата_Счёт">
+            <End Role="Счёт" EntitySet="Счёт" />
+            <End Role="Оплата" EntitySet="Оплата" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Риелтор_Справочник помещения" Association="Self.FK_Риелтор_Справочник помещения">
+            <End Role="Справочник помещения" EntitySet="Справочник помещения" />
+            <End Role="Риелтор" EntitySet="Риелтор" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Авторизация">
+          <Key>
+            <PropertyRef Name="ID_пользователя" />
+          </Key>
+          <Property Name="ID_пользователя" Type="Int32" Nullable="false" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Вид_дома">
+          <Key>
+            <PropertyRef Name="ID_вида" />
+          </Key>
+          <Property Name="ID_вида" Type="Int32" Nullable="false" />
+          <Property Name="Вид_дома1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Недвижимость" Relationship="Self.FK_Недвижимость_Вид_дома" FromRole="Вид_дома" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="Договор_на_оказание_услуг">
+          <Key>
+            <PropertyRef Name="ID_договора" />
+          </Key>
+          <Property Name="ID_договора" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <Property Name="Код_риелтора" Type="Int32" />
+          <Property Name="Код_недвижимости" Type="Int32" />
+          <Property Name="Код_клиента" Type="Int32" />
+          <Property Name="Сумма" Type="Int32" />
+          <NavigationProperty Name="Риелтор" Relationship="Self.FK_Договор_на_оказание_услуг_Риелтор" FromRole="Договор_на_оказание_услуг" ToRole="Риелтор" />
+          <NavigationProperty Name="Клиент" Relationship="Self.FK_Клиент_Договор_на_оказание_услуг" FromRole="Договор_на_оказание_услуг" ToRole="Клиент" />
+        </EntityType>
+        <EntityType Name="Запрос">
+          <Key>
+            <PropertyRef Name="ID_запроса" />
+          </Key>
+          <Property Name="ID_запроса" Type="Int32" Nullable="false" />
+          <Property Name="Площадь_помещения" Type="Int32" />
+          <Property Name="Тип" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Бюджет" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_клиента" Type="Int32" />
+          <NavigationProperty Name="Клиент" Relationship="Self.FK_Запрос_Клиент" FromRole="Запрос" ToRole="Клиент" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="ID_клиента" />
+          </Key>
+          <Property Name="ID_клиента" Type="Int32" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Телефон" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Паспортные_данные" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="C_ID_платежа" Type="Int32" />
+          <Property Name="ID_договора" Type="Int32" />
+          <NavigationProperty Name="Договор_на_оказание_услуг" Relationship="Self.FK_Клиент_Договор_на_оказание_услуг" FromRole="Клиент" ToRole="Договор_на_оказание_услуг" />
+          <NavigationProperty Name="Запрос" Relationship="Self.FK_Запрос_Клиент" FromRole="Клиент" ToRole="Запрос" />
+          <NavigationProperty Name="Оплата" Relationship="Self.FK_Клиент_Оплата" FromRole="Клиент" ToRole="Оплата" />
+        </EntityType>
+        <EntityType Name="Недвижимость">
+          <Key>
+            <PropertyRef Name="ID_недвижимости" />
+          </Key>
+          <Property Name="ID_недвижимости" Type="Int32" Nullable="false" />
+          <Property Name="Стоимость" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_статуса" Type="Int32" />
+          <Property Name="ID_района" Type="Int32" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_вида" Type="Int32" />
+          <Property Name="количество_комнат" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="метраж" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_риелтора" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Вид_дома" Relationship="Self.FK_Недвижимость_Вид_дома" FromRole="Недвижимость" ToRole="Вид_дома" />
+          <NavigationProperty Name="Район" Relationship="Self.FK_Недвижимость_Район" FromRole="Недвижимость" ToRole="Район" />
+          <NavigationProperty Name="Риелтор" Relationship="Self.FK_Недвижимость_Риелтор" FromRole="Недвижимость" ToRole="Риелтор" />
+          <NavigationProperty Name="Статус_оплаты" Relationship="Self.FK_Недвижимость_Статус_оплаты" FromRole="Недвижимость" ToRole="Статус_оплаты" />
+        </EntityType>
+        <EntityType Name="Оплата">
+          <Key>
+            <PropertyRef Name="ID_платежа" />
+          </Key>
+          <Property Name="ID_платежа" Type="Int32" Nullable="false" />
+          <Property Name="Дата_платежа" Type="DateTime" Precision="0" />
+          <Property Name="Сумма_платежа" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ID_счёта" Type="Int32" />
+          <NavigationProperty Name="Клиент" Relationship="Self.FK_Клиент_Оплата" FromRole="Оплата" ToRole="Клиент" />
+          <NavigationProperty Name="Счёт" Relationship="Self.FK_Оплата_Счёт" FromRole="Оплата" ToRole="Счёт" />
+        </EntityType>
+        <EntityType Name="Район">
+          <Key>
+            <PropertyRef Name="ID_района" />
+          </Key>
+          <Property Name="ID_района" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Недвижимость" Relationship="Self.FK_Недвижимость_Район" FromRole="Район" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="Риелтор">
+          <Key>
+            <PropertyRef Name="ID_риелтора" />
+          </Key>
+          <Property Name="ID_риелтора" Type="Int32" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_запроса" Type="Int32" />
+          <Property Name="ID_помещения" Type="Int32" />
+          <NavigationProperty Name="Договор_на_оказание_услуг" Relationship="Self.FK_Договор_на_оказание_услуг_Риелтор" FromRole="Риелтор" ToRole="Договор_на_оказание_услуг" />
+          <NavigationProperty Name="Недвижимость" Relationship="Self.FK_Недвижимость_Риелтор" FromRole="Риелтор" ToRole="Недвижимость" />
+          <NavigationProperty Name="Справочник_помещения" Relationship="Self.FK_Риелтор_Справочник_помещения" FromRole="Риелтор" ToRole="Справочник_помещения" />
+        </EntityType>
+        <EntityType Name="Справочник_помещения">
+          <Key>
+            <PropertyRef Name="ID_помещения" />
+          </Key>
+          <Property Name="ID_помещения" Type="Int32" Nullable="false" />
+          <Property Name="Площадь_помещения" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Тип" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ID_района" Type="Int32" />
+          <NavigationProperty Name="Риелтор" Relationship="Self.FK_Риелтор_Справочник_помещения" FromRole="Справочник_помещения" ToRole="Риелтор" />
+        </EntityType>
+        <EntityType Name="Статус_оплаты">
+          <Key>
+            <PropertyRef Name="ID_статуса" />
+          </Key>
+          <Property Name="ID_статуса" Type="Int32" Nullable="false" />
+          <Property Name="Статус_оплаты1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Недвижимость" Relationship="Self.FK_Недвижимость_Статус_оплаты" FromRole="Статус_оплаты" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="Счёт">
+          <Key>
+            <PropertyRef Name="ID_счёта" />
+          </Key>
+          <Property Name="ID_счёта" Type="Int32" Nullable="false" />
+          <Property Name="Реквизиты_банка" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Оплата" Relationship="Self.FK_Оплата_Счёт" FromRole="Счёт" ToRole="Оплата" />
+        </EntityType>
+        <Association Name="FK_Недвижимость_Вид_дома">
+          <End Role="Вид_дома" Type="Self.Вид_дома" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Вид_дома">
+              <PropertyRef Name="ID_вида" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID_вида" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Договор_на_оказание_услуг_Риелтор">
+          <End Role="Риелтор" Type="Self.Риелтор" Multiplicity="0..1" />
+          <End Role="Договор_на_оказание_услуг" Type="Self.Договор_на_оказание_услуг" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Риелтор">
+              <PropertyRef Name="ID_риелтора" />
+            </Principal>
+            <Dependent Role="Договор_на_оказание_услуг">
+              <PropertyRef Name="Код_риелтора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Договор_на_оказание_услуг">
+          <End Role="Договор_на_оказание_услуг" Type="Self.Договор_на_оказание_услуг" Multiplicity="0..1" />
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договор_на_оказание_услуг">
+              <PropertyRef Name="ID_договора" />
+            </Principal>
+            <Dependent Role="Клиент">
+              <PropertyRef Name="ID_договора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Запрос_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1" />
+          <End Role="Запрос" Type="Self.Запрос" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="ID_клиента" />
+            </Principal>
+            <Dependent Role="Запрос">
+              <PropertyRef Name="ID_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Оплата">
+          <End Role="Оплата" Type="Self.Оплата" Multiplicity="0..1" />
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оплата">
+              <PropertyRef Name="ID_платежа" />
+            </Principal>
+            <Dependent Role="Клиент">
+              <PropertyRef Name="C_ID_платежа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Район">
+          <End Role="Район" Type="Self.Район" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Район">
+              <PropertyRef Name="ID_района" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID_района" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Риелтор">
+          <End Role="Риелтор" Type="Self.Риелтор" Multiplicity="1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Риелтор">
+              <PropertyRef Name="ID_риелтора" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID_риелтора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Недвижимость_Статус_оплаты">
+          <End Role="Статус_оплаты" Type="Self.Статус_оплаты" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_оплаты">
+              <PropertyRef Name="ID_статуса" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="ID_статуса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оплата_Счёт">
+          <End Role="Счёт" Type="Self.Счёт" Multiplicity="0..1" />
+          <End Role="Оплата" Type="Self.Оплата" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Счёт">
+              <PropertyRef Name="ID_счёта" />
+            </Principal>
+            <Dependent Role="Оплата">
+              <PropertyRef Name="ID_счёта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Риелтор_Справочник_помещения">
+          <End Role="Справочник_помещения" Type="Self.Справочник_помещения" Multiplicity="0..1" />
+          <End Role="Риелтор" Type="Self.Риелтор" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Справочник_помещения">
+              <PropertyRef Name="ID_помещения" />
+            </Principal>
+            <Dependent Role="Риелтор">
+              <PropertyRef Name="ID_помещения" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Авторизация" EntityType="Self.Авторизация" />
+          <EntitySet Name="Вид_дома" EntityType="Self.Вид_дома" />
+          <EntitySet Name="Договор_на_оказание_услуг" EntityType="Self.Договор_на_оказание_услуг" />
+          <EntitySet Name="Запрос" EntityType="Self.Запрос" />
+          <EntitySet Name="Клиент" EntityType="Self.Клиент" />
+          <EntitySet Name="Недвижимость" EntityType="Self.Недвижимость" />
+          <EntitySet Name="Оплата" EntityType="Self.Оплата" />
+          <EntitySet Name="Район" EntityType="Self.Район" />
+          <EntitySet Name="Риелтор" EntityType="Self.Риелтор" />
+          <EntitySet Name="Справочник_помещения" EntityType="Self.Справочник_помещения" />
+          <EntitySet Name="Статус_оплаты" EntityType="Self.Статус_оплаты" />
+          <EntitySet Name="Счёт" EntityType="Self.Счёт" />
+          <AssociationSet Name="FK_Недвижимость_Вид_дома" Association="Self.FK_Недвижимость_Вид_дома">
+            <End Role="Вид_дома" EntitySet="Вид_дома" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Договор_на_оказание_услуг_Риелтор" Association="Self.FK_Договор_на_оказание_услуг_Риелтор">
+            <End Role="Риелтор" EntitySet="Риелтор" />
+            <End Role="Договор_на_оказание_услуг" EntitySet="Договор_на_оказание_услуг" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Договор_на_оказание_услуг" Association="Self.FK_Клиент_Договор_на_оказание_услуг">
+            <End Role="Договор_на_оказание_услуг" EntitySet="Договор_на_оказание_услуг" />
+            <End Role="Клиент" EntitySet="Клиент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Запрос_Клиент" Association="Self.FK_Запрос_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="Запрос" EntitySet="Запрос" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Оплата" Association="Self.FK_Клиент_Оплата">
+            <End Role="Оплата" EntitySet="Оплата" />
+            <End Role="Клиент" EntitySet="Клиент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Район" Association="Self.FK_Недвижимость_Район">
+            <End Role="Район" EntitySet="Район" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Риелтор" Association="Self.FK_Недвижимость_Риелтор">
+            <End Role="Риелтор" EntitySet="Риелтор" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Недвижимость_Статус_оплаты" Association="Self.FK_Недвижимость_Статус_оплаты">
+            <End Role="Статус_оплаты" EntitySet="Статус_оплаты" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оплата_Счёт" Association="Self.FK_Оплата_Счёт">
+            <End Role="Счёт" EntitySet="Счёт" />
+            <End Role="Оплата" EntitySet="Оплата" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Риелтор_Справочник_помещения" Association="Self.FK_Риелтор_Справочник_помещения">
+            <End Role="Справочник_помещения" EntitySet="Справочник_помещения" />
+            <End Role="Риелтор" EntitySet="Риелтор" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities2">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Авторизация">
+            <EntityTypeMapping TypeName="Model.Авторизация">
+              <MappingFragment StoreEntitySet="Авторизация">
+                <ScalarProperty Name="ID_пользователя" ColumnName="ID пользователя" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Вид_дома">
+            <EntityTypeMapping TypeName="Model.Вид_дома">
+              <MappingFragment StoreEntitySet="Вид дома">
+                <ScalarProperty Name="ID_вида" ColumnName="ID вида" />
+                <ScalarProperty Name="Вид_дома1" ColumnName="Вид дома" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Договор_на_оказание_услуг">
+            <EntityTypeMapping TypeName="Model.Договор_на_оказание_услуг">
+              <MappingFragment StoreEntitySet="Договор на оказание услуг">
+                <ScalarProperty Name="ID_договора" ColumnName="ID договора" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Код_риелтора" ColumnName="Код риелтора" />
+                <ScalarProperty Name="Код_недвижимости" ColumnName="Код недвижимости" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код клиента" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Запрос">
+            <EntityTypeMapping TypeName="Model.Запрос">
+              <MappingFragment StoreEntitySet="Запрос">
+                <ScalarProperty Name="ID_запроса" ColumnName="ID запроса" />
+                <ScalarProperty Name="Площадь_помещения" ColumnName="Площадь помещения" />
+                <ScalarProperty Name="Тип" ColumnName="Тип" />
+                <ScalarProperty Name="Бюджет" ColumnName="Бюджет" />
+                <ScalarProperty Name="ID_клиента" ColumnName="ID клиента" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиент">
+            <EntityTypeMapping TypeName="Model.Клиент">
+              <MappingFragment StoreEntitySet="Клиент">
+                <ScalarProperty Name="ID_клиента" ColumnName="ID клиента" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Паспортные_данные" ColumnName="Паспортные данные" />
+                <ScalarProperty Name="C_ID_платежа" ColumnName="[ID платежа" />
+                <ScalarProperty Name="ID_договора" ColumnName="ID договора" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Недвижимость">
+            <EntityTypeMapping TypeName="Model.Недвижимость">
+              <MappingFragment StoreEntitySet="Недвижимость">
+                <ScalarProperty Name="ID_недвижимости" ColumnName="ID недвижимости" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="ID_статуса" ColumnName="ID статуса" />
+                <ScalarProperty Name="ID_района" ColumnName="ID района" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="ID_вида" ColumnName="ID вида" />
+                <ScalarProperty Name="количество_комнат" ColumnName="количество комнат" />
+                <ScalarProperty Name="метраж" ColumnName="метраж" />
+                <ScalarProperty Name="ID_риелтора" ColumnName="ID риелтора" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оплата">
+            <EntityTypeMapping TypeName="Model.Оплата">
+              <MappingFragment StoreEntitySet="Оплата">
+                <ScalarProperty Name="ID_платежа" ColumnName="ID платежа" />
+                <ScalarProperty Name="Дата_платежа" ColumnName="Дата платежа" />
+                <ScalarProperty Name="Сумма_платежа" ColumnName="Сумма платежа" />
+                <ScalarProperty Name="ID_счёта" ColumnName="ID счёта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Район">
+            <EntityTypeMapping TypeName="Model.Район">
+              <MappingFragment StoreEntitySet="Район">
+                <ScalarProperty Name="ID_района" ColumnName="ID района" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Риелтор">
+            <EntityTypeMapping TypeName="Model.Риелтор">
+              <MappingFragment StoreEntitySet="Риелтор">
+                <ScalarProperty Name="ID_риелтора" ColumnName="ID риелтора" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="ID_запроса" ColumnName="ID запроса" />
+                <ScalarProperty Name="ID_помещения" ColumnName="ID помещения" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Справочник_помещения">
+            <EntityTypeMapping TypeName="Model.Справочник_помещения">
+              <MappingFragment StoreEntitySet="Справочник помещения">
+                <ScalarProperty Name="ID_помещения" ColumnName="ID помещения" />
+                <ScalarProperty Name="Площадь_помещения" ColumnName="Площадь помещения" />
+                <ScalarProperty Name="Тип" ColumnName="Тип" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="ID_района" ColumnName="ID района" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Статус_оплаты">
+            <EntityTypeMapping TypeName="Model.Статус_оплаты">
+              <MappingFragment StoreEntitySet="Статус оплаты">
+                <ScalarProperty Name="ID_статуса" ColumnName="ID статуса" />
+                <ScalarProperty Name="Статус_оплаты1" ColumnName="Статус оплаты" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Счёт">
+            <EntityTypeMapping TypeName="Model.Счёт">
+              <MappingFragment StoreEntitySet="Счёт">
+                <ScalarProperty Name="ID_счёта" ColumnName="ID счёта" />
+                <ScalarProperty Name="Реквизиты_банка" ColumnName="Реквизиты банка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
